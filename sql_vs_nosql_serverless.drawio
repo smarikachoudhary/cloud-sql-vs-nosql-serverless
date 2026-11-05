@@ -1,0 +1,61 @@
+<mxfile host="Electron">
+  <diagram name="SQL vs NoSQL" id="d1">
+    <mxGraphModel dx="1212" dy="849" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=18;" value="&lt;b&gt;Cloud Database Paradigms (SQL vs NoSQL) &amp;amp; Serverless (FaaS)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="30" width="600" x="250" y="5" as="geometry" />
+        </mxCell>
+        <mxCell id="client" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=13;" value="&lt;b&gt;Client Layer&lt;/b&gt;&lt;br&gt;Frontend App (User Traffic Source)" vertex="1">
+          <mxGeometry height="70" width="220" x="440" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="stackA" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;verticalAlign=top;fontSize=14;dashed=1;" value="&lt;b&gt;Stack A: Managed Relational Infrastructure&lt;/b&gt;" vertex="1">
+          <mxGeometry height="560" width="400" x="60" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="stackB" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;verticalAlign=top;fontSize=14;dashed=1;" value="&lt;b&gt;Stack B: Serverless Non-Relational Infrastructure&lt;/b&gt;" vertex="1">
+          <mxGeometry height="560" width="400" x="640" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="lb" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;fontSize=13;" value="&lt;b&gt;Load Balancer&lt;/b&gt;&lt;br&gt;(AWS ELB / ALB)" vertex="1">
+          <mxGeometry height="70" width="220" x="150" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="ec2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;fontSize=13;" value="&lt;b&gt;Virtual Machine (AWS EC2)&lt;/b&gt;&lt;br&gt;Persistent Server&lt;br&gt;&lt;i&gt;State: Stateful / Always-On&lt;/i&gt;" vertex="1">
+          <mxGeometry height="90" width="220" x="150" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="rds" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#ffffff;strokeColor=#6c8ebf;fontSize=13;" value="&lt;b&gt;Managed RDS SQL&lt;/b&gt;&lt;br&gt;(PostgreSQL / MySQL)&lt;br&gt;&lt;i&gt;Data Model: Structured / Schema-based Tables&lt;/i&gt;" vertex="1">
+          <mxGeometry height="120" width="240" x="140" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="apigw" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d79b00;fontSize=13;" value="&lt;b&gt;API Gateway&lt;/b&gt;&lt;br&gt;(AWS API Gateway)" vertex="1">
+          <mxGeometry height="70" width="220" x="730" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="lambda" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d79b00;fontSize=13;" value="&lt;b&gt;Serverless FaaS (AWS Lambda)&lt;/b&gt;&lt;br&gt;Function runs on-demand&lt;br&gt;&lt;i&gt;State: Stateless / Ephemeral&lt;/i&gt;" vertex="1">
+          <mxGeometry height="90" width="220" x="730" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="nosql" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#ffffff;strokeColor=#d79b00;fontSize=13;" value="&lt;b&gt;Managed NoSQL DB&lt;/b&gt;&lt;br&gt;(DynamoDB / MongoDB Atlas)&lt;br&gt;&lt;i&gt;Data Model: Schemaless Documents / Key-Value Pairs&lt;/i&gt;" vertex="1">
+          <mxGeometry height="120" width="240" x="720" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="client" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#6c8ebf;strokeWidth=3;endArrow=block;exitX=0;exitY=0.5;entryX=0.5;entryY=0;" target="lb" value="HTTP requests">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="client" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#d79b00;strokeWidth=3;endArrow=block;exitX=1;exitY=0.5;entryX=0.5;entryY=0;" target="apigw" value="HTTP requests">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="lb" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#6c8ebf;strokeWidth=3;endArrow=block;startArrow=block;" target="ec2" value="Persistent open connection">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="ec2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#6c8ebf;strokeWidth=3;endArrow=block;startArrow=block;" target="rds" value="Persistent connection pool">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="apigw" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#d79b00;strokeWidth=3;dashed=1;endArrow=classic;" target="lambda" value="Event-driven trigger (invokes function on-demand)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="lambda" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#d79b00;strokeWidth=3;dashed=1;endArrow=classic;" target="nosql" value="Stateless HTTPS API calls">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="legend" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;spacing=8;fillColor=#f5f5f5;strokeColor=#666666;fontSize=12;" value="&lt;b&gt;Legend&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#6c8ebf&quot;&gt;&lt;b&gt;Blue solid line&lt;/b&gt;&lt;/font&gt; = Stack A (persistent connections, stateful)&lt;br&gt;&lt;font color=&quot;#d79b00&quot;&gt;&lt;b&gt;Orange dashed line&lt;/b&gt;&lt;/font&gt; = Stack B (event-driven, stateless)&lt;br&gt;&lt;font color=&quot;#9673a6&quot;&gt;&lt;b&gt;Purple&lt;/b&gt;&lt;/font&gt; = Shared client layer" vertex="1">
+          <mxGeometry height="95" width="440" x="330" y="745" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
